@@ -1,5 +1,7 @@
 package response
 
+import "fmt"
+
 type Status struct {
 	Code    int
 	Message string
@@ -36,3 +38,19 @@ var (
 		Message: "Internal Server Error",
 	}
 )
+
+func BuildResponse(status Status, body string) string {
+	response := fmt.Sprintf(
+		"HTTP/1.1 %d %s\r\n"+
+			"Content-Type: text/plain\r\n"+
+			"Content-Length: %d\r\n"+
+			"Connection: close\r\n"+
+			"\r\n"+
+			"%s",
+		status.Code,
+		status.Message,
+		len(body),
+		body,
+	)
+	return response
+}
