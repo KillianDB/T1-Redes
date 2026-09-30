@@ -4,7 +4,24 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"server/response"
 )
+
+func handleResponse(status response.Status, body string) string {
+	response := fmt.Sprintf(
+		"HTTP/1.1 %d %s\r\n"+
+			"Content-Type: text/plain\r\n"+
+			"Content-Length: %d\r\n"+
+			"Connection: close\r\n"+
+			"\r\n"+
+			"%s",
+		status.Code,
+		status.Message,
+		len(body),
+		body,
+	)
+	return response
+}
 
 func handleConnection(conn net.Conn) {
 	defer conn.Close()
@@ -27,16 +44,7 @@ func handleConnection(conn net.Conn) {
 
 	body := "Hello, world!"
 
-	response := fmt.Sprintf(
-		"HTTP/1.1 200 OK\r\n"+
-			"Content-Type: text/plain\r\n"+
-			"Content-Length: %d\r\n"+
-			"Connection: close\r\n"+
-			"\r\n"+
-			"%s",
-		len(body),
-		body,
-	)
+	response := handleResponse(response.OK, body)
 
 	_, err := conn.Write([]byte(response))
 	if err != nil {
@@ -63,4 +71,3 @@ func main() {
 		go handleConnection(conn)
 	}
 }
-
