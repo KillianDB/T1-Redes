@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"server/response"
+	"server/httpresponse"
 )
 
 func handleConnection(conn net.Conn) {
@@ -32,9 +32,9 @@ func handleConnection(conn net.Conn) {
 
 	content, err := os.ReadFile("index.html")
 	if err != nil {
-		newReponse = response.BuildResponse(response.BadRequest, []byte(err.Error()), "text/plain")
+		newReponse = httpresponse.BuildResponse(httpresponse.BadRequest, []byte(err.Error()), "text/plain")
 	} else {
-		newReponse = response.BuildResponse(response.OK, []byte(content), "text/html")
+		newReponse = httpresponse.BuildResponse(httpresponse.OK, []byte(content), "text/html")
 	}
 
 	_, err = conn.Write([]byte(newReponse))
