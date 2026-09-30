@@ -4,10 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"os"
 	"server/response"
 )
 
 func handleConnection(conn net.Conn) {
+	var newReponse string
 	defer conn.Close()
 
 	reader := bufio.NewReader(conn)
@@ -26,11 +28,16 @@ func handleConnection(conn net.Conn) {
 		}
 	}
 
-	body := "Hello, world!"
+	// body := "Hello, world!"
 
-	response := response.BuildResponse(response.OK, body)
+	content, err := os.ReadFile("index.html")
+	if err != nil {
+		newReponse = response.BuildResponse(response.BadRequest, []byte(err.Error()), "text/plain")
+	} else {
+		newReponse = response.BuildResponse(response.OK, []byte(content), "text/html")
+	}
 
-	_, err := conn.Write([]byte(response))
+	_, err = conn.Write([]byte(newReponse))
 	if err != nil {
 		fmt.Println("Error writing response:", err)
 	}
