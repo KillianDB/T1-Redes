@@ -1,0 +1,2 @@
+Arquivo de texto servido pelo servidor HTTP/1.1.
+Usado para validar Content-Type: text/plain.

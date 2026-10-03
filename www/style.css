@@ -1,0 +1,73 @@
+body {
+    font-family: Georgia, serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 2rem;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+h1 {
+    color: #7dd3fc;
+    font-size: 1.6rem;
+    line-height: 1.35;
+    margin-top: 0;
+}
+
+.lead {
+    margin: 1.5rem 0 0.75rem;
+}
+
+.gopher {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    background: #020617;
+    border: 4px solid #38bdf8;
+    border-radius: 12px;
+}
+
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.botao {
+    display: inline-block;
+    padding: 0.65rem 1.1rem;
+    border-radius: 999px;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: #0f172a;
+    box-shadow: 0 4px 0 #020617;
+}
+
+.botao:hover {
+    transform: translateY(-2px);
+}
+
+.botao-txt { background: #fde68a; }
+.botao-json { background: #86efac; }
+.botao-pdf { background: #fca5a5; }
+.botao-png { background: #7dd3fc; }
+.botao-jpg { background: #c4b5fd; }
+.botao-gif { background: #67e8f9; }
+.botao-mp4 { background: #fdba74; }
+.botao-css { background: #fda4af; }
+.botao-js { background: #fcd34d; }
+.botao-bin { background: #cbd5e1; }
+
+#status {
+    margin-top: 1.5rem;
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
