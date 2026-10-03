@@ -15,7 +15,7 @@ var (
 		Code:    400,
 		Message: "Bad Request",
 	}
-
+	
 	Unauthorized = Status{
 		Code:    401,
 		Message: "Unauthorized",
@@ -29,6 +29,11 @@ var (
 	NotFound = Status{
 		Code:    404,
 		Message: "Not Found",
+	}
+
+	MethodNotAllowed = Status{
+		Code:    405,
+		Message: "Method Not Allowed",
 	}
 
 	InternalServerError = Status{
